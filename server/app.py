@@ -1,17 +1,6 @@
-from openpyxl import load_workbook
-import os
-
+'''
 from flask import *
 
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-   return render_template('index.html')
-if __name__ == '__main__':
-   app.run()
-'''
-from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
@@ -134,18 +123,27 @@ state_unabbrev = {
 
 
 #rent prices
-median_rent_prices_of_counties_spreadsheet = load_workbook(os.path.abspath("server/FY2023_FMR_50_county.xlsx")).active #find spreadsheet with county, OH
+median_rent_prices_of_counties_spreadsheet = load_workbook(os.path.abspath("server/FY2023_FMR_50_county.xlsx")).active
 county_dictionary = {}
 for i in range(2, 4766):
+   x = median_rent_prices_of_counties_spreadsheet.cell(row=i, column=4).value + median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value[(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(","):(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(",")+4]
    if ("County" in median_rent_prices_of_counties_spreadsheet.cell(row=i, column=4).value):
-      if not median_rent_prices_of_counties_spreadsheet.cell(row=i, column=4).value + median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value[(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(","):(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(",")+4] in county_dictionary.keys():
-         county_dictionary[median_rent_prices_of_counties_spreadsheet.cell(row=i, column=4).value + median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value[(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(","):(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(",")+4]] = {}
-      county_dictionary[median_rent_prices_of_counties_spreadsheet.cell(row=i, column=4).value + median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value[(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(","):(median_rent_prices_of_counties_spreadsheet.cell(row=i, column=6).value).find(",")+4]]["Median Rent Price"] = median_rent_prices_of_counties_spreadsheet.cell(row=i, column = 8).value
+      if not x in county_dictionary.keys():
+         county_dictionary[x] = {}
+      county_dictionary[x]["Median Rent Price"] = median_rent_prices_of_counties_spreadsheet.cell(row=i, column = 8).value
 
 #house prices
-#median_house_prices_of_counties_spreadsheet = load_workbook(os.path.abspath("server/2022-q3-county-median-prices-and-monthly-mortgage-payment-by-price-12-20-2022.xlsx"))
-#for i in range(2, 4000):
-   
+median_house_prices_of_counties_spreadsheet = load_workbook(os.path.abspath("server/2022-q3-county-median-prices-and-monthly-mortgage-payment-by-price-12-20-2022.xlsx")).active
+for i in range(2, 3119):
+   x = median_house_prices_of_counties_spreadsheet.cell(row=i, column = 1).value[:median_house_prices_of_counties_spreadsheet.cell(row=i, column = 1).value.find(",")+2] + state_unabbrev[median_house_prices_of_counties_spreadsheet.cell(row=i, column = 1).value[median_house_prices_of_counties_spreadsheet.cell(row=i, column = 1).value.find(",")+3:]]
+   if ("County" in median_house_prices_of_counties_spreadsheet.cell(row=i, column=1).value):
+      if not x in county_dictionary.keys():
+         county_dictionary[x] = {}
+      county_dictionary[x]["Median House Price"] = median_house_prices_of_counties_spreadsheet.cell(row=i, column = 2).value
+
+print(county_dictionary)
+print(county_dictionary["Cuyahoga County, OH"])
+
 #crime rate
 
 
