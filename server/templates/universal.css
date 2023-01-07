@@ -29,13 +29,22 @@ body {
 
 .underline{
   transform: scale(1, -1);
-        color: #db8c42;
+        color: #E9C29F;
         -moz-transform: scale(1, -1);
         -webkit-transform: scale(1, -1);
         -o-transform: scale(1, -1);
         -ms-transform: scale(1, -1);
         transform: scale(1, -1);
-        font-weight:50;
+        
+      
+}
+
+img[src="../images/cityscape.png"] {
+  height: 45vh;
+  margin-bottom: 35vh;
+  position:absolute;
+    z-index:0;
+    object-fit: cover;
 }
 
 .second-section{
@@ -56,14 +65,15 @@ body {
   background-color: #F7EBE8;
   padding: 2vh;
   border-radius: 1.5vh;
-  padding-right: 11vh;
-  padding-left: 11vh;
+  padding-right: 11vw;
+  padding-left: 11vw;
 }
 
 
 .OR{
   padding-top:.5vh;
   padding-bottom:.5vh;
+  z-index: 1;
 }
 .form {
   display: flex;
@@ -78,20 +88,22 @@ body {
   outline: none;
   margin-bottom: 0;
   padding: 3vh;
+  padding-right:6vw;
+  z-index: 1;
 }
 
 .search-button {
   background: transparent;
   border: none;
   outline: none;
-margin-left: -7vh;
+margin-left: -4vw;
+z-index: 1;
 
 }
 
 .search-button img {
-  width: 4vh;
-  height: 4vh;
-  object-fit: cover;
+  width: 2.4vw;
+  height: 5vh;
 }
 
 .select-location{
@@ -100,8 +112,8 @@ margin-left: -7vh;
   background-color: #F7EBE8;
   padding: 2.5vh;
   border-radius: 1.5vh;
-  padding-right: 5vh;
-  padding-left: 5vh;
+  padding-right: 5vw;
+  padding-left: 5vw;
   margin-top: 0;
 
 }
@@ -114,9 +126,10 @@ img {
   .select-location {
     border: none;
     outline: none;
-    transition: background-color 20ms linear;
+    transition: background-color 200ms linear;
     background-color: #F7EBE8;
     background-color: #E8BEB4;
+    z-index: 1;
 
   }
   .select-location:hover{
@@ -132,11 +145,11 @@ img {
     border-radius: 1.5vh;
     padding-top: 2.5vh;
     padding-bottom:2.5vh;
-    border-width: 0.3vh;
+    border-width: 0.3vw;
 
   }
   input::placeholder {
-  
+    
     color: black;
 }
 
