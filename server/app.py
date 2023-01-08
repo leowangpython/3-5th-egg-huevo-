@@ -284,7 +284,9 @@ def DisplayData(location, actual_location):
    string = "\n\n" + location + ("\n\nPopulation: {population}\nMedian House Price: ${median_house_price}\nMedian Rent Price: ${median_rent_price}").format(population=county_dictionary[actual_location]["Population"], median_house_price=county_dictionary[actual_location]["Median House Price"], median_rent_price=county_dictionary[actual_location]["Median Rent Price"])
    return string
 
+#!!!!!!!!!!!!!!!!!!!!!!! output
 print(DisplayData(county_city + ", " + state, actual_location + ", " + state))
+#Population, Median House Price, Median Rent Price
 
 if county_city in state_crime_dictionary.keys():
    state_crime_dictionary = {}
@@ -302,9 +304,11 @@ if county_city in state_crime_dictionary.keys():
          state_crime_dictionary[state_crime_spreadsheet.cell(row=i, column=2).value]["Narcotic Offenses"] = state_crime_spreadsheet.cell(row=i,column=55).value
          state_crime_dictionary[state_crime_spreadsheet.cell(row=i, column=2).value]["Crime Rate"] = state_crime_spreadsheet.cell(row=i,column=4).value / state_crime_spreadsheet.cell(row=i,column=3).value
          
+         #!!!!!!!!!!!!!!!!!!!!!!! output
          print([state_crime_dictionary[county_city]["Assault Offences"], state_crime_dictionary[county_city]["Homicide Offences"], state_crime_dictionary[county_city]["Kidnapping/Abduction"], state_crime_dictionary[county_city]["Burglary/Breaking and Entering"], state_crime_dictionary[county_city]["Fraud Offences"], state_crime_dictionary[county_city]["Identity Theft"], state_crime_dictionary[county_city]["Narcotic Offenses"]])
-         #assault, homicide, kidnappin, burglary, fraud, identity theft, narcotics, other
+         #assault, homicide, kidnappin, burglary, fraud, identity theft, narcotics
 
+         #!!!!!!!!!!!!!!!!!!!!!!! output
          print([state_crime_dictionary[county_city]["Total Offences"], state_crime_dictionary[county_city]["Crime Rate"]])
-         #total, crime rate
+         #total offenses, crime rate
          break
