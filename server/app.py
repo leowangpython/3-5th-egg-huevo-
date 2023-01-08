@@ -181,9 +181,8 @@ for i in range(2, 30411):
 
 
 
-
-
 cities_list = []
+isCounty = False
 for i in range(2, 30411):
    cities_list.append(cities_spreadsheet.cell(row=i, column=1).value)
    
@@ -194,7 +193,10 @@ county_city = ""
 while county_city not in county_dictionary.keys() and county_city not in cities_list:
    county_city = input("\nCounty/City: ")
 
-if county_city in county_dictionary.keys()
+if county_city in county_dictionary.keys():
+   isCounty = True
+else:
+   isCounty = False
 
 
 
