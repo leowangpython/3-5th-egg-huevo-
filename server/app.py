@@ -194,7 +194,7 @@ county_city = ""
 while county_city not in county_dictionary.keys() and county_city not in cities_list:
    county_city = input("\nCounty/City: ")
 
-if county_city
+if county_city in county_dictionary.keys()
 
 
 
