@@ -13,7 +13,6 @@ if __name__ == '__main__':
 from openpyxl import load_workbook
 import os
 
-#state
 state_abbrev = {
     'AK': 'Alaska',
     'AL': 'Alabama',
@@ -115,7 +114,7 @@ state_unabbrev = {
     "Vermont": "VT",
     "Virginia": "VA",
     "Washington": "WA",
-    "Hawaiʻi": "HI",
+    "Hawaii": "HI",
     "West Virginia": "WV",
     "Wisconsin": "WI",
     "Wyoming": "WY",
@@ -141,16 +140,15 @@ for i in range(2, 3119):
          county_dictionary[x] = {}
       county_dictionary[x]["Median House Price"] = median_house_prices_of_counties_spreadsheet.cell(row=i, column = 2).value
 
-print(county_dictionary)
-print(county_dictionary["Cuyahoga County, OH"])
 
-#crime rate
+
 
 
 #population
 
 
 #education report
+
 
 
 
@@ -180,3 +178,80 @@ for i in range(2, 30411):
    if not cities_spreadsheet.cell(row=i, column=6).value in cities_in_counties.keys(): 
       cities_in_counties[cities_spreadsheet.cell(row=i, column=6).value] = []
    cities_in_counties[cities_spreadsheet.cell(row=i, column=6).value].append(cities_spreadsheet.cell(row=i, column=1).value)
+
+
+
+
+
+cities_list = []
+for i in range(2, 30411):
+   cities_list.append(cities_spreadsheet.cell(row=i, column=1).value)
+   
+state = ""
+while state not in state_abbrev.keys() and state not in state_abbrev.values():
+   state = input("\nState: ")
+county_city = ""
+while county_city not in county_dictionary.keys() and county_city not in cities_list:
+   county_city = input("\nCounty/City: ")
+
+if county_city
+
+
+
+
+#crime rate
+state_crime_abbrev = {
+    'AK': load_workbook(os.path.abspath("/server/State Tables Offenses by Agency/Alaska_Offense_Type_by_Agency_2021.xlsx")).active,
+    'AL': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Alabama_Offense_Type_by_Agency_2021.xlsx")).active,
+    'AR': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Arkansas_Offense_Type_by_Agency_2021.xlxs")).active,
+    'AZ': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Arizona_Offense_Type_by_Agency_2021.xlsx")).active,
+    'CA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/California_Offense_Type_by_Agency_2021.xlsx")).active,
+    'CO': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Colorado_Offense_Type_by_Agency_2021.xlsx")).active,
+    'CT': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Connecticut_Offense_Type_by_Agency_2021.xlsx")).active,
+    'DC': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/District_of_Columbia_Offense_Type_by_Agency_2021.xlsx")).active,
+    'DE': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Delaware_Offense_Type_by_Agency_2021.xlsx")).active,
+    'FL': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Florida_Offense_Type_by_Agency_2021.xlsx")).active,
+    'GA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Georgia_Offense_Type_by_Agency_2021.xlsx")).active,
+    'HI': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Hawaii_Offense_Type_by_Agency_2021.xlsx")).active,
+    'IA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Iowa_Offense_Type_by_Agency_2021.xlsx")).active,
+    'ID': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Idaho_Offense_Type_by_Agency_2021.xlsx")).active,
+    'IL': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Illinois_Offense_Type_by_Agency_2021.xlsx")).active,
+    'IN': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Indiana_Offense_Type_by_Agency_2021.xlsx")).active,
+    'KS': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Kansas_Offense_Type_by_Agency_2021.xlsx")).active,
+    'KY': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Kentucky_Offense_Type_by_Agency_2021.xlsx")).active,
+    'LA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Loisiana_Offense_Type_by_Agency_2021.xlsx")).active,
+    'MA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Massachusetts_Offense_Type_by_Agency_2021.xlsx")).active,
+    'MD': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Maryland_Offense_Type_by_Agency_2021.xlsx")).active,
+    'ME': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Maine_Offense_Type_by_Agency_2021.xlsx")).active,
+    'MI': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Michigan_Offense_Type_by_Agency_2021.xlsx")).active,
+    'MN': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Minnesota_Offense_Type_by_Agency_2021.xlsx")).active,
+    'MO': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Missouri_Offense_Type_by_Agency_2021.xlsx")).active,
+    'MS': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Mississippi_Offense_Type_by_Agency_2021.xlsx")).active,
+    'MT': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Montana_Offense_Type_by_Agency_2021.xlsx")).active,
+    'NC': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/North_Carolina_Offense_Type_by_Agency_2021.xlsx")).active,
+    'ND': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/North_Dakota_Offense_Type_by_Agency_2021.xlsx")).active,
+    'NE': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Nebraska_Offense_Type_by_Agency_2021.xlsx")).active,
+    'NH': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/New_Hampshire_Offense_Type_by_Agency_2021.xlsx")).active,
+    'NJ': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/New_Jersey_Offense_Type_by_Agency_2021.xlsx")).active,
+    'NM': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/New_Mexico_Offense_Type_by_Agency_2021.xlsx")).active,
+    'NV': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Nevada_Offense_Type_by_Agency_2021.xlsx")).active,
+    'NY': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/New_York_Offense_Type_by_Agency_2021.xlsx")).active,
+    'OH': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Ohio_Offense_Type_by_Agency_2021.xlsx")).active,
+    'OK': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Oklahoma_Offense_Type_by_Agency_2021.xlsx")).active,
+    'OR': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Oregon_Offense_Type_by_Agency_2021.xlsx")).active,
+    'PA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Pennsylvania_Offense_Type_by_Agency_2021.xlsx")).active,
+    'RI': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Rhode_Island_Offense_Type_by_Agency_2021.xlsx")).active,
+    'SC': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/South_Carolina_Offense_Type_by_Agency_2021.xlsx")).active,
+    'SD': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/South_Dakota_Offense_Type_by_Agency_2021.xlsx")).active,
+    'TN': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Tennessee_Offense_Type_by_Agency_2021.xlsx")).active,
+    'TX': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Texas_Offense_Type_by_Agency_2021.xlsx")).active,
+    'UT': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Utah_Offense_Type_by_Agency_2021.xlsx")).active,
+    'VA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Virginia_Offense_Type_by_Agency_2021.xlsx")).active,
+    'VT': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Vermont_Offense_Type_by_Agency_2021.xlsx")).active,
+    'WA': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Washington_Offense_Type_by_Agency_2021.xlsx")).active,
+    'WI': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Wisconsin_Offense_Type_by_Agency_2021.xlsx")).active,
+    'WV': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/West_Virginia_Offense_Type_by_Agency_2021.xlsx")).active,
+    'WY': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Wyoming_Offense_Type_by_Agency_2021.xlsx")).active
+    
+}
+
