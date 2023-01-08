@@ -140,11 +140,15 @@ for i in range(2, 3119):
          county_dictionary[x] = {}
       county_dictionary[x]["Median House Price"] = median_house_prices_of_counties_spreadsheet.cell(row=i, column = 2).value
 
-
-
-
-
 #population
+county_population_spreadsheet = load_workbook(os.path.abspath("server/co-est2021-pop.xlsx")).active
+for i in range(6, 3148):
+   x = county_population_spreadsheet.cell(row=i, column = 1).value[:county_population_spreadsheet.cell(row=i, column = 1).value.find(",")+2] + state_unabbrev[county_population_spreadsheet.cell(row=i, column = 1).value[county_population_spreadsheet.cell(row=i, column = 1).value.find(",")+2:]]
+   if ("County" in county_population_spreadsheet.cell(row=i, column=1).value):
+      if not x in county_dictionary.keys():
+         county_dictionary[x] = {}
+      county_dictionary[x]["Population"] = county_population_spreadsheet.cell(row=i, column = 4).value
+print(county_dictionary["Washington County, OH"])
 
 
 #education report
@@ -182,18 +186,21 @@ for i in range(2, 30411):
 
 
 cities_list = []
+counties_list = []
 isCounty = False
 for i in range(2, 30411):
    cities_list.append(cities_spreadsheet.cell(row=i, column=1).value)
+for i in range(2, 3145):
+   counties_list.append(counties_spreadsheet.cell(row=i, column=1).value)
    
 state = ""
 while state not in state_abbrev.keys() and state not in state_abbrev.values():
    state = input("\nState: ")
 county_city = ""
-while county_city not in county_dictionary.keys() and county_city not in cities_list:
+while county_city not in counties_list and county_city not in cities_list:
    county_city = input("\nCounty/City: ")
 
-if county_city in county_dictionary.keys():
+if county_city in counties_list:
    isCounty = True
 else:
    isCounty = False
@@ -203,7 +210,7 @@ else:
 
 #crime rate
 state_crime_abbrev = {
-    'AK': load_workbook(os.path.abspath("/server/State Tables Offenses by Agency/Alaska_Offense_Type_by_Agency_2021.xlsx")).active,
+    'AK': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Alaska_Offense_Type_by_Agency_2021.xlsx")).active,
     'AL': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Alabama_Offense_Type_by_Agency_2021.xlsx")).active,
     'AR': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Arkansas_Offense_Type_by_Agency_2021.xlxs")).active,
     'AZ': load_workbook(os.path.abspath("server/State Tables Offenses by Agency/Arizona_Offense_Type_by_Agency_2021.xlsx")).active,
